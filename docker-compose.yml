@@ -25,12 +25,17 @@ services:
       ]
 
   mongodb:
-    image: mongo:8.0
+    image: mongo:${MONGO_VERSION}
     container_name: mongo_lab
     ports:
       - "27017:27017"
     volumes:
+      - ./mongo-init:/docker-entrypoint-initdb.d
       - mongo_data:/data/db
+
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin123
 
   mongo-express:
     image: mongo-express:1.0.0
@@ -62,3 +67,4 @@ volumes:
   postgres_data:
   mongo_data:
   cassandra_data:
+  mongo-init:
