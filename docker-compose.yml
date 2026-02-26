@@ -30,15 +30,15 @@ services:
     volumes:
       - mongo_data:/data/db
 
-  cassandra:
-    image: cassandra:5.0
-    container_name: cassandra_lab
-    ports:
-      - "9042:9042"
-    environment:
-      - CASSANDRA_START_RPC=true
-    volumes:
-      - cassandra_data:/var/lib/cassandra
+  # cassandra:
+  #   image: cassandra:5.0
+  #   container_name: cassandra_lab
+  #   ports:
+  #     - "9042:9042"
+  #   environment:
+  #     - CASSANDRA_START_RPC=true
+  #   volumes:
+  #     - cassandra_data:/var/lib/cassandra
 
 volumes:
   postgres_data:
