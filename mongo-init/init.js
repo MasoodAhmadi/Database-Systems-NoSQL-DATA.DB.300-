@@ -1,4 +1,4 @@
-db = db.getSiblingDB('DATA_DB_300');
+db = db.getSiblingDB('banking');
 
 //collections
 db.createCollection("customers", {
