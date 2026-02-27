@@ -228,4 +228,3 @@ try {
 } finally {
     session.endSession()
 }
-
