@@ -14,6 +14,25 @@ const loanId = db.loans.findOne(
 // -------------------------------
 // ================================
 
+// Complex version
+
+let riskAssessment = db.loans.aggregate([
+    { $match: { _id: loanId } },
+    {
+        $lookup: {
+            from: "risk_assessments",
+            localField: "_id",
+            foreignField: "loan_id",
+            as: "riskAssessments"
+        }
+    },
+    { $project: { riskAssessment: 1, _id: 0 } }
+])
+
+// Simple version
+
+/*
+
 let loanApplicationId = db.loans.find({ _id: loanId }).applicationId;
 var riskAssessment = db.risk_assessments({ application_id: loanApplicationId });
 
@@ -22,3 +41,6 @@ if (!riskAssessment) {
 } else {
     print("Risk assessment by loan id: ", riskAssessment);
 }
+
+*/
+

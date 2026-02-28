@@ -8,6 +8,32 @@ const customerId = db.customers.findOne({ first_name: "Mikko", last_name: "Virta
 // -------------------------------
 // Q1: Find loan applications by customer id
 // -------------------------------
+
+// Complex version
+
+let customerLoanApps = db.loan_applications.aggregate([
+    { $match: { customer_id: customerId } },
+    {
+        $lookup: {
+            from: "customers",
+            localField: "customer_id",
+            foreignField: "_id",
+            as: "customer"
+        }
+    },
+])
+
+if (customerLoanApps.length === 0) {
+    print("No loan applications found for customer:", customerId);
+} else {
+    print("Loan applications for customer:", customerId);
+    customerLoanApps.forEach(app => printjson(app));
+}
+
+// Simple version
+
+/*
+
 var customerLoanApps = db.loan_applications.find({ customer_id: customerId }).toArray();
 
 if (customerLoanApps.length === 0) {
@@ -16,3 +42,5 @@ if (customerLoanApps.length === 0) {
     print("Loan applications for customer:", customerId);
     customerLoanApps.forEach(app => printjson(app));
 }
+
+*/
