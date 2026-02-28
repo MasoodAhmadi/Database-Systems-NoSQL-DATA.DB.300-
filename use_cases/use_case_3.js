@@ -12,7 +12,7 @@ const applicationId = db.loan_applications.findOne({ customer_id: customerId, st
 // -------------------------------
 
 // Complex version
-var loan = db.loans.aggregate([
+var loans = db.loans.aggregate([
     { $match: { application_id: applicationId } },
     {
         $lookup: {
@@ -32,10 +32,11 @@ var loan = db.loans.aggregate([
     }
 ])
 
-if (!loan) {
+if (!loans) {
     print("No loan found by loan application id:", applicationId);
 } else {
-    print("Loan by loan application id: ", loan);
+    print("Loan by loan application id: ", applicationId);
+    loans.forEach((loan) => printjson(loan))
 }
 
 // Simple version

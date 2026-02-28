@@ -26,8 +26,13 @@ let riskAssessment = db.loans.aggregate([
             as: "riskAssessments"
         }
     },
-    { $project: { riskAssessment: 1, _id: 0 } }
 ])
+
+if (!riskAssessment) {
+    print("No risk assessment found by loan id:", loanId);
+} else {
+    print("Risk assessment by loan id: ", riskAssessment);
+}
 
 // Simple version
 
