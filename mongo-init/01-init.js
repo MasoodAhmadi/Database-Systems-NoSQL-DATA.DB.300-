@@ -43,10 +43,13 @@ const collectionsConfig = [
                         }
                     },
                     bank_accounts: {
-                        bsonType: "object",
-                        properties: {
-                            iban: { bsonType: "string" },
-                            balance: { bsonType: "decimal" }
+                        bsonType: "array",
+                        items: {
+                            bsonType: "object",
+                            properties: {
+                                iban: { bsonType: "string" },
+                                balance: { bsonType: "decimal" }
+                            }
                         }
                     }
                 }

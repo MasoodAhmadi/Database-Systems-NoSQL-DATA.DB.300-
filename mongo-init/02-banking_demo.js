@@ -42,10 +42,12 @@ try {
                 years_employed: NumberInt(5)
             }
         ],
-        bank_accounts: {
-            iban: "FI2112345600000785",
-            balance: NumberDecimal("15000")
-        }
+        bank_accounts: [
+            {
+                iban: "FI2112345600000785",
+                balance: NumberDecimal("15000")
+            }
+        ]
     });
 } catch (error) {
     print("Insert customers failed. Error message:", error.message);
