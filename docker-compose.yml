@@ -36,6 +36,11 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin123
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   mongo-express:
     image: mongo-express:1.0.0
@@ -53,6 +58,17 @@ services:
       ME_CONFIG_BASICAUTH_USERNAME: admin
       ME_CONFIG_BASICAUTH_PASSWORD: admin123
 
+  express-server:
+    build: ./server
+    container_name: express_lab
+    ports:
+      - "3001:3001"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    environment:
+      - MONGO_URI=mongodb://admin:admin123@mongodb:27017/banking?authSource=admin
+    restart: always
   # cassandra:
   #   image: cassandra:5.0
   #   container_name: cassandra_lab
