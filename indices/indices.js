@@ -28,7 +28,6 @@ db.collateral.createIndex({ loan_id: 1 });
 
 // ============================================
 // Use Case Q9: Update repayment schedule by loan id
-// Note: This assumes a 'repayment_schedules' collection exists.
 // ============================================
 db.repayment_schedules.createIndex({ loan_id: 1 });
 
