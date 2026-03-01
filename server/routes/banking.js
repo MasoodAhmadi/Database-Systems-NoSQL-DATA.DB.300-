@@ -1,7 +1,7 @@
 // routes/banking.js
 const express = require('express')
 const router = express.Router()
-const Customer = require('../models/Customer')
+const Customer = require('../models/customers')
 
 // Get all customers
 router.get('/customers', async (req, res) => {
