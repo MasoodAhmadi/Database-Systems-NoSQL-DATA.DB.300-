@@ -1,3 +1,8 @@
+// ===============================
+// READ AND WRITE OPERATIONS FOR LOAN MANAGEMENT SYSTEM
+// ===============================
+
+
 // Q1: Get loan application by customerID
 db.loan_applications.find({
     customer_id: ObjectId("CUSTOMER_ID")
